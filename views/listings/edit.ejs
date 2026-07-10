@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stayscape</title>
+</head>
+<body>
+    <h3>edit your listing</h3>
+    <form method="POST" action ="/listings/<%=listing._id %>?_method=PUT">
+    <input name="listing[title]" value="<%= listing.title %>"type="text"/>
+    <textarea name="listing[description]"> <%= listing.description %></textarea>
+       <br><br>
+       <input type="number" name="listing[price]"value="<%= listing.price %>" type="number">
+       <br><br>
+       <input type="text" name="listing[image]" value="<%= listing.image %>" type="text">
+       <br><br>
+       <input type="text" name="listing[location]"value="<%= listing.location %>" type="text">
+       <br><br>
+       <input type="text" name="listing[country]"value="<%= listing.country %>" type="text">
+       <br><br>
+       <button>Update Listing</button>
+    </form>
+</body>
+</html>
+
+
+<%# action-Where should I send the form data after the user clicks Submit?%>
+<%# The browser knows that whatever the user types in this input belongs to the key country because of the name="country" 
+attribute. When the form is submitted, Express receives it as req.body.country.%>
+<%# The value attribute shows the current (existing) value inside the input box. value takes priority over placeholder. %>

@@ -1,0 +1,31 @@
+body{
+    background-color: #ebe6d2;
+}
+.logo{
+    width: 80px;
+    height: auto;
+}
+.nav-link{
+    color: #364820;
+    font-family: "Rockwell";
+}
+
+/*footer*/
+.f-info-links a{
+    text-decoration: none;
+    color: #364820;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    height:10rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    flex-direction: column;
+    background-color: #d2cbaf;
+}
