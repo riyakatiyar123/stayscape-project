@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+  
+  <% layout("layouts/boilerplate") %>
+  
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +9,19 @@
     <title>Staysacpe</title>
 </head>
 <body>
+    <div class="show-body">
+
+   
     <h3>Listing details</h3>
+    <div class="card">
+        <img src="<%=listing.image.url%>"  class=" card-img-top show-img "alt="listing_image">
+        <div class="card-body">
+    <p class="card-text"> <%=listing.title %></p>
+  </div>
+
+
+
+    </div>
     <ul>
         <li><%=listing.title %></li>
         <li><%=listing.description %></li>
@@ -19,6 +34,7 @@
         <button>DELETE </button>
     </form>
     </ul> 
-   
+     </div>
+  
 </body>
 </html>

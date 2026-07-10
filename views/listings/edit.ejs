@@ -1,28 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stayscape</title>
-</head>
-<body>
-    <h3>edit your listing</h3>
-    <form method="POST" action ="/listings/<%=listing._id %>?_method=PUT">
-    <input name="listing[title]" value="<%= listing.title %>"type="text"/>
-    <textarea name="listing[description]"> <%= listing.description %></textarea>
-       <br><br>
-       <input type="number" name="listing[price]"value="<%= listing.price %>" type="number">
-       <br><br>
-       <input type="text" name="listing[image]" value="<%= listing.image %>" type="text">
-       <br><br>
-       <input type="text" name="listing[location]"value="<%= listing.location %>" type="text">
-       <br><br>
-       <input type="text" name="listing[country]"value="<%= listing.country %>" type="text">
-       <br><br>
-       <button>Update Listing</button>
-    </form>
-</body>
-</html>
+<% layout("layouts/boilerplate") %>
+<div class="edit-page-body">
+
+<h2 class="page-title text-center">Edit Your Stay</h2>
+
+<p class="page-subtitle">
+    Update your property details below.
+</p>
+
+<div class="container mt-5 mb-0">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="listing[title]"
+                        value="<%= listing.title %>"
+                        class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea
+                        id="description"
+                        name="listing[description]"
+                        class="form-control"
+                        rows="4"><%= listing.description %></textarea>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input
+                            type="number"
+                            id="price"
+                            name="listing[price]"
+                            value="<%= listing.price %>"
+                            class="form-control">
+                    </div>
+
+                    <div class="col-md-9 mb-3">
+                        <label for="image" class="form-label">Image URL</label>
+                        <input
+                            type="text"
+                            id="image"
+                            name="listing[image]"
+                            value="<%= listing.image.url %>"
+                            class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input
+                        type="text"
+                        id="location"
+                        name="listing[location]"
+                        value="<%= listing.location %>"
+                        class="form-control">
+                </div>
+
+                <div class="mb-4">
+                    <label for="country" class="form-label">Country</label>
+                    <input
+                        type="text"
+                        id="country"
+                        name="listing[country]"
+                        value="<%= listing.country %>"
+                        class="form-control">
+                </div>
+
+                <button class="btn btn-success">
+                    Update Listing
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
 
 
 <%# action-Where should I send the form data after the user clicks Submit?%>

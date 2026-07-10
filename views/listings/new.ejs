@@ -1,26 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stayscape</title>
-</head>
-<body>
-    <h2>enter details of the listing</h2>
-    <form method="POST" action="/listings">
-       <input type="text" name="listing[title]" placeholder="Enter the name">
-       <br><br>
-       <textarea name="listing[description]" placeholder="enter the description"></textarea>
-       <br><br>
-       <input type="number" name="listing[price]" placeholder="Enter the price">
-       <br><br>
-       <input type="text" name="listing[image]" placeholder="Enter the image/URL">
-       <br><br>
-       <input type="text" name="listing[location]" placeholder="Enter the location">
-       <br><br>
-       <input type="text" name="listing[country]" placeholder="Enter the country">
-       <br><br>
-       <button>submit</button>
+<% layout("layouts/boilerplate") %>
+<div class="new-stay-page">
+<h2 class="page-title text-center mb-4">Create New Stay</h2>
+<p class="page-subtitle">
+
+   Share your property with travelers around the world.
+
+</p>
+    <div class="row">
+
+        <div class="col-lg-6 offset-lg-3">
+            
+                 <form method="POST" action="/listings">
+        
+        <div class="mb-3">
+             <label for="title" class="form-label">Title</label>
+             <input type="text" name="listing[title]" placeholder="Enter the name" class="form-control">
+        </div>
+      
+       <div class="mb-3">
+       <label for="discription" class="form-label">Description</label>
+       <textarea name="listing[description]" placeholder="enter the description" class="form-control"></textarea>
+       </div>
+       <div class="row">
+
+    <div class="col-md-4 mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+            type="number"
+            id="price"
+            name="listing[price]"
+            class="form-control"
+            placeholder="Enter price">
+    </div>
+
+    <div class="col-md-8 mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input
+            type="text"
+            id="image"
+            name="listing[image]"
+            class="form-control"
+            placeholder="Image Link">
+    </div>
+
+</div>
+       <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+       <input type="text" name="listing[location]" placeholder="Enter the location" class="form-control">
+       </div>
+       <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input type="text" name="listing[country]" placeholder="Enter the country" class="form-control">
+       </div>
+      
+      
+       <button class="btn">submit</button>
     </form>
+
+    
+
+
+          
+        </div>
+
+    </div>
+
+</div>
+</div>
+    
+    
 </body>
 </html>
