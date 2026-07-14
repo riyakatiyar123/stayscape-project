@@ -52,6 +52,7 @@ body{
     border: none !important;
     box-shadow: none !important;
     background-color: #ebe6d2;
+     padding: 0.5rem;
 }
 
 .card-img-top{
@@ -75,7 +76,10 @@ body{
   
 }
 .btn {
-    background-color: #364820; 
+   
+    background-color:  #65873c; 
+    font-size: medium;
+    color:rgb(50, 80, 41);
 }
 .btn:hover {
     background-color: #608038; 
@@ -116,12 +120,10 @@ body{
     font-weight: 50;
     font-size: 0.95rem;
 }
-.btn{
-    background-color:  #65873c; 
-    font-size: medium;
-    color:rgb(50, 80, 41);
 
-}
+    
+
+
 .new-stay-page{
     background-color: #b8c7a5;
 }
@@ -133,13 +135,37 @@ body{
    background-color: #b8c7a5;
 
 }
+
+
+/* show */
+.show-card{
+    width: 30rem;
+    margin: 0 auto;
+}
+
 .show-img{
     width: 100%;
-    height: 350px !important;
+    height: 300px;
     object-fit: cover;
+    border-radius: 1rem;
+
 }
 .show-body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.show-btn{
+    background-color: #65873c;
+    border: none;
+    color: #323c26;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.6rem 1.5rem;
+    border-radius: 10px;
+}
+
+.show-btn:hover{
+    background-color: #4f6b2f;
+    color: white;
 }

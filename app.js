@@ -5,6 +5,12 @@ const Listing = require("./models/listing");
 const path=require("path");
 const methodOverride= require("method-override");
 const ejsMate=require("ejs-mate");
+// wrapAsync automatically catches errors for you.
+//wrapAsync is a helper function that automatically catches errors in async routes and sends them to Express’s error handler.
+const wrapAsync=require("./utils/wrapAsync.js");
+const expressError=require("./utils/expressError.js");
+const {listingschema,reviewschema}=require("./schema.js");
+const Review=require("./models/review.js");
 
 
 const mongo_url="mongodb://127.0.0.1:27017/stayscape";
@@ -30,6 +36,33 @@ app.get("/",(req,res)=>{
     res.send("hi,im a root");
 });
 
+
+const validatelisting=(req,res,next)=>{
+    let{error}=listingschema.validate(req.body);
+    if(error){
+        let errmsg=error.details.map((el)=>el.message).join(",");
+        throw new expressError(400,errmsg);
+    }
+    else{
+        next();
+    }
+};
+
+
+const validatereview=(req,res,next)=>{
+    let{error}=reviewschema.validate(req.body);
+    if(error){
+        let errmsg=error.details.map((el)=>el.message).join(",");
+        throw new expressError(400,errmsg);
+    }
+    else{
+        next();
+    }
+};
+
+
+
+
 // tell Express how to find and use EJS templates.
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views")); //All my .ejs files are inside the views folder
@@ -39,10 +72,10 @@ app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));  //Anything inside public can be used by the browser
 
 //index route->list all the title 
-app.get("/listings",async(req,res)=>{
+app.get("/listings",wrapAsync(async(req,res)=>{
  const allListings= await Listing.find();
  res.render("listings/index",{allListings});
-});
+}));
 
 //new route
 app.get("/listings/new",(req,res)=>{
@@ -50,31 +83,31 @@ app.get("/listings/new",(req,res)=>{
 });
 
 //show route->we have an id and we will return all the data related to that id 
-app.get("/listings/:id",async(req,res)=>{
+app.get("/listings/:id",wrapAsync(async(req,res)=>{
     let{id}=req.params;      // req.params → Data comes from the URL.
     const listing=await Listing.findById(id);
     res.render("listings/show",{listing});
 
-});
+}));
 
 
 //edit route
-app.get("/listings/:id/edit", async (req, res) => {
+app.get("/listings/:id/edit",wrapAsync( async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/edit", { listing });
-});
+}));
 
 //If you used POST here, it would mean you’re trying to create another listing, not edit the existing one.
-app.put("/listings/:id", async (req, res) => {
+//upadte route
+app.put("/listings/:id",validatelisting,wrapAsync( async (req, res) => {
     let { id } = req.params;
-
     await Listing.findByIdAndUpdate(id, { //Finds a listing by its ID and updates it with the new values submitted through the edit form.
         ...req.body.listing
     });
 
     res.redirect(`/listings/${id}`);
-});
+}));
 
 //create route-->When a user submits the New Listing Form, this route will run.
 //When the user fills out the form and clicks Submit, the form sends a POST request to /listings.
@@ -82,19 +115,33 @@ app.put("/listings/:id", async (req, res) => {
 //  and saves it to MongoDB with .save(). After the listing is successfully stored, Express redirects 
 // the user to /listings, where they can see the newly added listing along with all the existing ones.
 
-app.post("/listings",async(req,res)=>{
+app.post("/listings", validatelisting,wrapAsync(async(req,res)=>{ 
     const newListing=new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
-});
+})
+);
 
 
-app.delete("/listings/:id",async(req,res)=>{
+//delete route
+app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     let { id } = req.params;
     const deletelisting=await Listing.findByIdAndDelete(id);
     console.log(deletelisting);
     res.redirect("/listings");
-});
+}));
+
+
+//review route
+app.post("/listings/:id/reviews",validatereview,wrapAsync(async(req,res)=>{
+    let listing=await Listing.findById(req.params.id);
+    let newReview=new Review(req.body.review);
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+    res.redirect(`/listings/${listing._id}`);
+
+}));
 
 
 // app.get("/testListing",async(req,res)=>{
@@ -111,6 +158,20 @@ app.delete("/listings/:id",async(req,res)=>{
 //     res.send("successful testing");
 
 // });
+
+//error for all the route that do not exists 
+app.use((req, res, next) => {
+    next(new expressError(404, "Page not found!"));
+});
+
+
+app.use((err,req,res,next)=>{
+    let{statusCode=500,message="something went wrong"}=err;
+    // res.status(statusCode).send(message);
+    res.status(statusCode);
+    res.render("error.ejs",{err});
+});
+
 
 //Start listening for visitors on port 8080
 app.listen(8080,()=>{

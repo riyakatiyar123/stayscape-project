@@ -11,15 +11,23 @@ const listingSchema= Schema({
     image:{
      filename: String,
      url:{type:String, 
-        default:"https://media.houseandgarden.co.uk/photos/690cbee6cf8b45d60afb7ebe/master/w_1024%2Cc_limit/250303-oolsg-p1-riva-pool-sunbeds-vert-0927-master.jpg",
+        default:"https://i.pinimg.com/1200x/a7/e0/6d/a7e06d0fd6801ad82edd4e70c60ee956.jpg",
         
-        set:(v)=> v==="" ?"https://media.houseandgarden.co.uk/photos/690cbee6cf8b45d60afb7ebe/master/w_1024%2Cc_limit/250303-oolsg-p1-riva-pool-sunbeds-vert-0927-master.jpg":v,
+        set:(v)=> v==="" ?"https://i.pinimg.com/1200x/a7/e0/6d/a7e06d0fd6801ad82edd4e70c60ee956.jpg":v,
     }
 },
     price: Number,
     location: String,
     country: String,
+    reviews:[
+        {
+        type:Schema.Types.ObjectId,
+        ref:"Review",
+
+    },
+],//this adds review model in the listing
+
 });
 
 const Listing=mongoose.model("listing",listingSchema); //Create a model called Listing using this schema
-module.exports=Listing; //This makes the Listing model available to other files.
+module.exports=Listing; //This makes the Listing model available to other files

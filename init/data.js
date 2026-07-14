@@ -330,7 +330,7 @@ const sampleListings = [
       "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
     image: {
       filename: "listingimage",
-      url: "https://i.pinimg.com/736x/c9/89/11/c989113441c0fc483874b9ad32d52c45.jpg",
+      url: "https://i.pinimg.com/736x/b7/25/4b/b7254bb784409bb9db1fc5032e8f5bdb.jpg"
     },
     price: 30000,
     location: "Aspen",
