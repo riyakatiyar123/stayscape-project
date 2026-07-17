@@ -169,3 +169,7 @@ body{
     background-color: #4f6b2f;
     color: white;
 }
+.listing-card{
+    border: solid rgb(183, 170, 170);
+    border-radius: 20px;
+}

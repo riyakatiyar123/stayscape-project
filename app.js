@@ -85,7 +85,7 @@ app.get("/listings/new",(req,res)=>{
 //show route->we have an id and we will return all the data related to that id 
 app.get("/listings/:id",wrapAsync(async(req,res)=>{
     let{id}=req.params;      // req.params → Data comes from the URL.
-    const listing=await Listing.findById(id);
+    const listing=await Listing.findById(id).populate("reviews");
     res.render("listings/show",{listing});
 
 }));
@@ -132,8 +132,11 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
 }));
 
 
-//review route
+// post review route
 app.post("/listings/:id/reviews",validatereview,wrapAsync(async(req,res)=>{
+    console.log(req.body.review.rating);
+
+    console.log(req.body.review.comment);
     let listing=await Listing.findById(req.params.id);
     let newReview=new Review(req.body.review);
     listing.reviews.push(newReview);
@@ -142,6 +145,18 @@ app.post("/listings/:id/reviews",validatereview,wrapAsync(async(req,res)=>{
     res.redirect(`/listings/${listing._id}`);
 
 }));
+
+//delete review route
+app.delete("/listings/:id/reviews/:reviewId",wrapAsync(async(req,res)=>{
+    let{id,reviewId}=req.params;
+
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/listings/${id}`);
+}));
+
+
 
 
 // app.get("/testListing",async(req,res)=>{
