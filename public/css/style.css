@@ -24,7 +24,10 @@ body{
 }
 
 /*footer*/
-
+footer {
+    display: block;
+    width: 100%;
+}
 
 .f-info-links a{
     text-decoration: none;
@@ -172,4 +175,13 @@ body{
 .listing-card{
     border: solid rgb(183, 170, 170);
     border-radius: 20px;
+}
+
+
+/* //alert cross */
+
+
+.alert {
+    position: relative;
+    padding-right: 3rem;
 }
