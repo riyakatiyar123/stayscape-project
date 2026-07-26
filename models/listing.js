@@ -26,8 +26,12 @@ const listingSchema= Schema({
         type:Schema.Types.ObjectId,
         ref:"Review",
 
-    },
-],//this adds review model in the listing
+    }],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
+    }
+
 
 });
 
