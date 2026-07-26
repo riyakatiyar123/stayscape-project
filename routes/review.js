@@ -6,7 +6,7 @@ const wrapAsync=require("../utils/wrapAsync.js");
 const expressError=require("../utils/expressError.js");
 const Review=require("../models/review.js");
 const Listing = require("../models/listing");
-const{isLoggedIn,validatereview}=require("../middleware.js");
+const{isLoggedIn,validatereview, isReviewAuthor}=require("../middleware.js");
 const reviewController=require("../controllers/reviews.js");
 
 
@@ -14,6 +14,6 @@ const reviewController=require("../controllers/reviews.js");
 router.post("/",isLoggedIn,validatereview,wrapAsync(reviewController.createReview));
 
 //delete review route
-router.delete("/:reviewId",isLoggedIn,wrapAsync(reviewController.destroyReview));
+router.delete("/:reviewId",isLoggedIn, isReviewAuthor,wrapAsync(reviewController.destroyReview));
 
 module.exports=router;

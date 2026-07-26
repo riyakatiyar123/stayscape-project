@@ -55,9 +55,9 @@ next();    };
     };
 
      module.exports.isReviewAuthor=async(req,res,next)=>{
-         let { id,reviewid } = req.params;
+         let { id,reviewId } = req.params;
     const review = await Review.findById(reviewId);
-     if(!review.owner.equals(res.locals.currUser._id))
+     if(!review.author.equals(res.locals.currUser._id))
     {
           req.flash("error","You are not the author of this listing");
           return res.redirect(`/listings/${id}`);

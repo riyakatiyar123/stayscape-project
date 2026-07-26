@@ -11,7 +11,7 @@ module.exports.renderNewForm=(req,res)=>{
     res.render("listings/new");
 };
 
-module.exports.showListin=async(req,res)=>{
+module.exports.showListing=async(req,res)=>{
     let{id}=req.params;      // req.params → Data comes from the URL.
     const listing=await Listing.findById(id).populate({path:"reviews",populate:{path:"author"}}).populate("owner");
     if(!listing)
@@ -28,7 +28,7 @@ module.exports.editListing=async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
     req.flash("success","Listing Update!");
-    res.redirect(`/listings/ ${ id }`);
+    res.redirect(`/listings/${ id }`);
 };
 
 module.exports.updateListing=async (req, res) => {

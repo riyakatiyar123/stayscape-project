@@ -185,3 +185,21 @@ footer {
     position: relative;
     padding-right: 3rem;
 }
+
+/* review delete button  */
+.delete-review-btn{
+    background-color: #65873c;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-family: "Rockwell";
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-review-btn:hover{
+    background-color: #4f6b2f;
+    color: white;
+}
