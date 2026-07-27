@@ -18,44 +18,42 @@
     <div class="mt-4">
         <h4>Details</h4>
 
-        <ul class="list-unstyled"><p>
-            <li> Owner - <%=listing.owner.username%></li>
-
-        </p>
-            
+        <ul class="list-unstyled">
+            <li>Owner - <%= listing.owner.username %></li>
             <li><%= listing.description %></li>
             <li>&#8377; <%= listing.price.toLocaleString("en-IN") %></li>
             <li><%= listing.location %></li>
             <li><%= listing.country %></li>
         </ul>
     </div>
-    <br/>
 
-   
- <% if(currUser && listing.owner._id.equals(currUser._id)) {%>
-    <div class="d-flex gap-3 mt-3">
+    <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
 
-        <a
-            href="/listings/<%= listing._id %>/edit"
-            class="btn show-btn">
-            Edit
-        </a>
+        <div class="d-flex gap-3 mt-3">
 
-        <form
-            method="POST"
-            action="/listings/<%= listing._id %>?_method=DELETE">
+            <a
+                href="/listings/<%= listing._id %>/edit"
+                class="btn show-btn">
+                Edit
+            </a>
 
-            <button class="btn show-btn">
-                Delete
-            </button>
+            <form
+                method="POST"
+                action="/listings/<%= listing._id %>?_method=DELETE">
 
-        </form>
+                <button class="btn show-btn">
+                    Delete
+                </button>
 
-    </div>
-  <% } %>
+            </form>
+
+        </div>
+
+    <% } %>
+
     <!-- Review Form -->
 
-    <% if(currUser) {%>
+    <% if (currUser) { %>
 
     <div class="container mt-5 mb-5">
 
@@ -65,9 +63,13 @@
                 Leave a Review
             </h4>
 
-            <form action="/listings/<%= listing.id%>/reviews" method="POST" class="needs-validation" novalidate>
+            <form
+                action="/listings/<%= listing.id %>/reviews"
+                method="POST"
+                class="needs-validation"
+                novalidate>
 
-               <fieldset class="starability-heartbeat">
+                <fieldset class="starability-heartbeat">
 
                     <legend>Rating</legend>
 
@@ -83,8 +85,16 @@
                     <input type="radio" id="rate2" name="review[rating]" value="4">
                     <label for="rate2" title="Poor">2 stars</label>
 
-                    <input type="radio" id="rate1" name="review[rating]" value="5" checked>
-                    <label for="rate1" title="Terrible">1 star</label>
+                    <input
+                        type="radio"
+                        id="rate1"
+                        name="review[rating]"
+                        value="5"
+                        checked>
+
+                    <label for="rate1" title="Terrible">
+                        1 star
+                    </label>
 
                 </fieldset>
 
@@ -95,18 +105,16 @@
                     </label>
 
                     <textarea
-    id="comment"
-    name="review[comment]"
-    class="form-control"
-    rows="5"
-    placeholder="Share your experience..."
-    required></textarea>
+                        id="comment"
+                        name="review[comment]"
+                        class="form-control"
+                        rows="5"
+                        placeholder="Share your experience..."
+                        required></textarea>
+
                     <div class="invalid-feedback">
-
-    Please enter a comment.
-
-</div>
-                        
+                        Please enter a comment.
+                    </div>
 
                 </div>
 
@@ -121,25 +129,72 @@
             </form>
 
         </div>
-<% } %>
 
-       <h4>All the Reviews</h4>
-        <div class="row"> 
-            <% for(let review of listing.reviews){
-            %>
-            <div class="listing-card col-5 mb-3 ms-3">
-                <div class="card-body">
-                    <h5 class="card-title"><%= review.author.username %></h5>
-                    <p class="card-text"><%= review.comment%></p>
-                    <p class="starability-result" data-rating="<%= review.rating %>"></p>
-                     <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id%>?_method=DELETE">
-                        <button class="delete-review-btn">Delete</button>
-                      
-                     </form>
+    </div>
+
+    <% } %>
+
+    <!-- Reviews -->
+
+    <h4 class="mt-4">All Reviews</h4>
+
+    <div class="row">
+
+        <% for (let review of listing.reviews) { %>
+
+            <div class="col-md-5 mb-3 ms-3">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            <%= review.author.username %>
+                        </h5>
+
+                        <p class="card-text">
+                            <%= review.comment %>
+                        </p>
+
+                        <p
+                            class="starability-result"
+                            data-rating="<%= review.rating %>">
+                        </p>
+
+                        <form
+                            class="mt-2"
+                            method="POST"
+                            action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+
+                            <button class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
-                 
+
             </div>
-<%}%>
-        </div>
-      
+
+        <% } %>
+
+    </div>
+
+  <!-- Map -->
+
+<h4 class="mt-4">Location</h4>
+
+<div id="map"></div>
+
+<script>
+    const listingData = {
+        title: "<%= listing.title %>",
+        location: "<%= listing.location %>",
+        geometry: <%- JSON.stringify(listing.geometry) %>
+    };
+</script>
+
+</div>
+

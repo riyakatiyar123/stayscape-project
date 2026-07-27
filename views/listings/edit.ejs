@@ -17,7 +17,8 @@
                 <form method="POST"
                       action="/listings/<%= listing._id %>?_method=PUT"
                       class="needs-validation"
-                      novalidate>
+                     novalidate
+                     enctype="multipart/form-data">
 
                     <!-- Title -->
                     <div class="mb-3">
@@ -51,6 +52,20 @@
                             Please enter a description.
                         </div>
                     </div>
+                   <div class="mb-2">
+    <img
+        src="<%= listing.image.url %>"
+        alt="Current Image"
+        style="
+            width: 250px;
+            height: 180px;
+            display: block;
+            margin: 0;
+            padding: 0;
+            object-fit: contain;
+            
+        ">
+</div>
 
                     <!-- Price & Image -->
                     <div class="row">
@@ -70,17 +85,17 @@
                                 Please enter the price.
                             </div>
                         </div>
-
+                        
                         <div class="col-md-9 mb-3">
-                            <label for="image" class="form-label">Image URL</label>
+                            <label for="image" class="form-label">Upload new Image</label>
 
                             <input
-                                type="text"
+                                type="file"
                                 id="image"
-                                name="listing[image][url]"
-                                value="<%= listing.image.url %>"
+                                name="listing[image]"
                                 class="form-control"
-                                placeholder="Image URL">
+                                placeholder="Image URL"
+                                >
 
                             <!-- No required here because your schema has a default image -->
                         </div>

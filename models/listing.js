@@ -1,46 +1,100 @@
-//A model is a blueprint or template that tells Mongoose what kind of data will be stored in a MongoDB collection and lets you work with that data.
-const mongoose=require("mongoose"); //We are bringing Mongoose into our file so we can create schemas and models.
-const Schema=mongoose.Schema;
-const Review=require("./review.js");
+// //A model is a blueprint or template that tells Mongoose what kind of data will be stored in a MongoDB collection and lets you work with that data.
+// const mongoose=require("mongoose"); //We are bringing Mongoose into our file so we can create schemas and models.
+// const Schema=mongoose.Schema;
+// const Review=require("./review.js");
 
 
-const listingSchema= Schema({
+// const listingSchema= Schema({
+//     title: {
+//         type:String,
+//         required:true,
+//     },
+//     description: String,
+//     image:{
+//      filename: String,
+//      url:String,
+//     },
+//     price: Number,
+//     location: String,
+//     country: String,
+//     reviews:[
+//         {
+//         type:Schema.Types.ObjectId,
+//         ref:"Review",
+
+//     }],
+//     owner:{
+//         type:Schema.Types.ObjectId,
+//         ref:"User",
+//     }
+
+
+// });
+
+// listingSchema.post("findOneAndDelete",async(listing)=>{
+//     if(listing){
+//         await Review.deleteMany({_id: {$in: listing.reviews}});
+//     }
+// });
+
+
+// const Listing=mongoose.model("listing",listingSchema); //Create a model called Listing using this schema
+// module.exports=Listing; //This makes the Listing model available to other file
+
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const Review = require("./review.js");
+
+const listingSchema = Schema({
     title: {
-        type:String,
-        required:true,
+        type: String,
+        required: true,
     },
+
     description: String,
-    image:{
-     filename: String,
-     url:{type:String, 
-        default:"https://i.pinimg.com/1200x/a7/e0/6d/a7e06d0fd6801ad82edd4e70c60ee956.jpg",
-        
-        set:(v)=> v==="" ?"https://i.pinimg.com/1200x/a7/e0/6d/a7e06d0fd6801ad82edd4e70c60ee956.jpg":v,
-    }
-},
+
+    image: {
+        filename: String,
+        url: String,
+    },
+
     price: Number,
+
     location: String,
+
     country: String,
-    reviews:[
+
+    geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            default: "Point",
+        },
+        coordinates: {
+            type: [Number],
+            default: [77.2090, 28.6139], // [longitude, latitude] (Delhi)
+        },
+    },
+
+    reviews: [
         {
-        type:Schema.Types.ObjectId,
-        ref:"Review",
+            type: Schema.Types.ObjectId,
+            ref: "Review",
+        },
+    ],
 
-    }],
-    owner:{
-        type:Schema.Types.ObjectId,
-        ref:"User",
-    }
-
-
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
-listingSchema.post("findOneAndDelete",async(listing)=>{
-    if(listing){
-        await Review.deleteMany({_id: {$in: listing.reviews}});
+listingSchema.post("findOneAndDelete", async (listing) => {
+    if (listing) {
+        await Review.deleteMany({ _id: { $in: listing.reviews } });
     }
 });
 
+const Listing = mongoose.model("listing", listingSchema);
 
-const Listing=mongoose.model("listing",listingSchema); //Create a model called Listing using this schema
-module.exports=Listing; //This makes the Listing model available to other files
+module.exports = Listing;

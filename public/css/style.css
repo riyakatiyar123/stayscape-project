@@ -203,3 +203,10 @@ footer {
     background-color: #4f6b2f;
     color: white;
 }
+
+#map{
+    height:400px;
+    width:100%;
+    margin-top:1rem;
+    border-radius:10px;
+}

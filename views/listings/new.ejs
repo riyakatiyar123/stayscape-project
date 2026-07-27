@@ -10,8 +10,8 @@
 
         <div class="col-lg-6 offset-lg-3">
             
-                <form method="POST" action="/listings" novalidate class="needs-validation">
-        
+                <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+       
         <div class="mb-3">
              <label for="title" class="form-label">Title</label>
              <input type="text" name="listing[title]" placeholder="Enter the name" class="form-control" required>
@@ -48,22 +48,20 @@
     Please enter the price.
 </div>
     </div>
+<div class="col-md-8 mb-3">
+    <label for="image" class="form-label">Image Upload</label>
 
-    <div class="col-md-8 mb-3">
-        <label for="image" class="form-label">Image URL</label>
-        <input
-            type="text"
-            id="image"
-            name="listing[image][url]"
-            class="form-control"
-            placeholder="Image Link" >
-          <div class="invalid-feedback">
-    Please enter an image
-</div>  
-            
+    <input
+        type="file"
+        id="image"
+        name="listing[image]"
+        class="form-control"
+    > required
+</div>
+ 
+             
     </div>
 
-</div>
        <div class="mb-3">
         <label for="location" class="form-label">Location</label>
        <input type="text" name="listing[location]" placeholder="Enter the location" class="form-control"required>

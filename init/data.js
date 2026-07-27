@@ -4,10 +4,11 @@ const sampleListings = [
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
     image: {
+      
       filename: "listingimage",
       url: "https://images.unsplash.com/photo-1592694844266-5c03865c7bc5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q296eSUyMEJlYWNoZnJvbnQlMjBDb3R0YWdlfGVufDB8fDB8fHww"
     },
-    
+   
     price: 7000,
     location: "Malibu",
     country: "United States",

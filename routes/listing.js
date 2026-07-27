@@ -4,6 +4,9 @@ const wrapAsync=require("../utils/wrapAsync.js");
 const Listing = require("../models/listing");
 const {isLoggedIn,isOwner,validatelisting,isReviewAuthor}=require("../middleware.js");
 const listingcontroller=require("../controllers/listings.js");
+const multer  = require('multer');
+const {storage}=require("../cloud-config.js");
+const upload = multer({ storage });
 
 
 
@@ -21,7 +24,7 @@ router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingcontroller.editListin
 
 //If you used POST here, it would mean you’re trying to create another listing, not edit the existing one.
 //upadte route
-router.put("/:id",isLoggedIn,isOwner,validatelisting,wrapAsync( listingcontroller.updateListing));
+router.put("/:id",isLoggedIn,isOwner,upload.single("listing[image]"),validatelisting,wrapAsync( listingcontroller.updateListing));
 
 
 //create route-->
@@ -32,7 +35,9 @@ router.put("/:id",isLoggedIn,isOwner,validatelisting,wrapAsync( listingcontrolle
 //  and saves it to MongoDB with .save(). After the listing is successfully stored, Express redirects 
 // the user to /listings, where they can see the newly added listing along with all the existing ones.
 
-router.post("/",isLoggedIn, validatelisting,wrapAsync(listingcontroller.createListing));
+// router.post("/",
+router.post("/",isLoggedIn, validatelisting,upload.single("listing[image]"),wrapAsync(listingcontroller.createListing));
+   
 
 //delete route
 router.delete("/:id",isLoggedIn,isReviewAuthor,isOwner,wrapAsync(listingcontroller.destroyRoute));

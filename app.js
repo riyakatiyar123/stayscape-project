@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV!="production"){
+     require('dotenv').config();
+}
+
 const express=require("express");//We are bringing Express into our project because Express helps us make a web server.
 const app=express();
 const mongoose= require("mongoose");//Mongoose helps our Node.js application talk to MongoDB.  Node.js ↔ Mongoose ↔ MongoDB
