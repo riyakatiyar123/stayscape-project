@@ -15,7 +15,7 @@
 
         <div class="card-body">
 
-            <h4 class="card-title mb-3">
+            <h4 class="card-title mb-3 show-title">
                 <%= listing.title %>
             </h4>
 
@@ -194,7 +194,7 @@
                         method="POST"
                         action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
 
-                        <button class="delete-review-btn w-100">
+                        <button class="delete-review-btn ">
 
                             Delete Review
 
