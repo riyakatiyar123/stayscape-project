@@ -456,6 +456,12 @@ footer {
     flex:1;
     margin:0 10px;
 }
+.navbar-nav .green-btn{
+    margin-left: 10px;
+}
+.navbar-nav{
+    gap: 10px;
+}
 
 .mobile-search-input{
     border-radius:25px;
