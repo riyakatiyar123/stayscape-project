@@ -71,7 +71,7 @@ app.use(express.static(path.join(__dirname,"public")));  //Anything inside publi
 const store=MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
-        secret:"mysupersecret",
+        secret:process.env.SECRET,
     },
     touchAfter:24*3600,
 });
@@ -82,7 +82,7 @@ store.on("error",(err)=>{
 
 const sessionOption={
     store,
-    secret:"mysupersecret",
+    secret:process.env.SECRET,
     resave: false,
     saveUninitialized:true,
     cookie:{
