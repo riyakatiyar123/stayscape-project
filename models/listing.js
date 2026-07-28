@@ -63,6 +63,11 @@ const listingSchema = Schema({
     location: String,
 
     country: String,
+    
+    category: {
+    type: String,
+    required: true,
+},
 
     geometry: {
         type: {

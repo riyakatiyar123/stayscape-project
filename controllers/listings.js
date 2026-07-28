@@ -3,9 +3,39 @@
 const Listing = require("../models/listing");
 const axios = require("axios");
 
+// module.exports.index = async (req, res) => {
+//     const allListings = await Listing.find();
+//     res.render("listings/index", { allListings });
+// };
+
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find();
-    res.render("listings/index", { allListings });
+    let filter = {};
+
+    if (req.query.location) {
+        filter.location = {
+            $regex: req.query.location,
+            $options: "i",
+        };
+    }
+
+    if (req.query.category) {
+
+    if (req.query.category === "Amazing Views") {
+        filter.category = {
+            $in: ["Amazing Views", "Mountains" ,"Lakefront","Cabin"]
+        };
+    } else {
+        filter.category = req.query.category;
+    }
+
+}
+
+    const allListings = await Listing.find(filter);
+
+    res.render("listings/index", {
+        allListings,
+        searchLocation: req.query.location || "",
+    });
 };
 
 module.exports.renderNewForm=(req,res)=>{

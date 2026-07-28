@@ -2,7 +2,7 @@
 
 <div class="show-body">
 
-    <h3 class="mb-4"><%= listing.title %></h3>
+    <h3 class="mt-4"><%= listing.title %></h3>
 
     <div class="card show-card">
         <img
@@ -11,7 +11,7 @@
             alt="listing_image">
 
         <div class="card-body">
-            <p class="card-text"><%= listing.title %></p>
+            <p class="card-text "><%= listing.title %></p>
         </div>
     </div>
 
@@ -144,7 +144,7 @@
 
             <div class="col-md-5 mb-3 ms-3">
 
-                <div class="card">
+                <div class="card review-card">
 
                     <div class="card-body">
 
@@ -166,9 +166,9 @@
                             method="POST"
                             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
 
-                            <button class="btn btn-sm btn-danger">
-                                Delete
-                            </button>
+                            <button class="delete-review-btn">
+    Delete
+</button>
 
                         </form>
 
@@ -192,7 +192,7 @@
     const listingData = {
         title: "<%= listing.title %>",
         location: "<%= listing.location %>",
-        geometry: <%- JSON.stringify(listing.geometry) %>
+        geometry:" <%- JSON.stringify(listing.geometry) %>"
     };
 </script>
 

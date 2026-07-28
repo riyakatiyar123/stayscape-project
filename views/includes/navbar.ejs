@@ -9,22 +9,70 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link "  href="/">Home</a>
-        <a class="nav-link" href="/listings">All listings</a>
-        <a class="nav-link" href="/listings/new">Add new listings</a>
+       
+        <a class="nav-link" href="/listings"> Stays</a>
+        <a class="nav-link" href="/listings/new">Add new Stay</a>
       
       </div>
-      <div class="navbar-nav ms-auto">
-        <% if(!currUser)
-        {%>
-         <a class="nav-link "  href="/signup">SignUp</a>
-        <a class="nav-link" href="/login">Login</a>
-        <%}%>
-        <%if(currUser){%>
-          <a class="nav-link" href="/logout"> Log Out</a>
+       <form class="search-bar" action="/listings" method="GET">
 
-       <% }%>
-       
+    <!-- Destination -->
+    <div class="search-item">
+        <label for="location">Where</label>
+        <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Your destination"
+        >
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Dates -->
+<div class="search-item">
+    <label for="dates">Dates</label>
+    <input
+        type="text"
+        id="dates"
+        name="dates"
+        placeholder="Add dates"
+    >
+</div>
+
+<div class="divider"></div>
+    <!-- Type of Stay -->
+    <div class="search-item">
+        <label for="category">Type of Stay</label>
+
+        <select id="category" name="category">
+            <option value="">Any</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Villa">Villa</option>
+            <option value="Cabin">Cabin</option>
+            <option value="Cottage">Cottage</option>
+            <option value="Farmhouse">Farmhouse</option>
+            <option value="Resort">Resort</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Treehouse">Treehouse</option>
+        </select>
+    </div>
+
+    <!-- Search Button -->
+    <button class="search-btn" type="submit">
+        Search
+    </button>
+
+</form>
+      <div class="navbar-nav ms-auto">
+        <% if(!currUser){ %>
+    <a class="green-btn me-2" href="/signup">Sign Up</a>
+    <a class="green-btn" href="/login">Login</a>
+<% } %>
+
+<% if(currUser){ %>
+    <a class="green-btn" href="/logout">Log Out</a>
+<% } %>
         
       
       </div>

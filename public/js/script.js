@@ -1,75 +1,70 @@
+const mongoose = require("mongoose");
+const axios = require("axios");
+const Listing = require("../../../models/listing");
 
-// (() => {
-//   'use strict';
+const MONGO_URL = "mongodb://127.0.0.1:27017/stayscape";
 
-//   const forms = document.querySelectorAll('.needs-validation');
+async function main() {
+    try {
+        // Connect to MongoDB
+        await mongoose.connect(MONGO_URL);
+        console.log("Connected to MongoDB");
 
-//   Array.from(forms).forEach(form => {
-//     form.addEventListener('submit', event => {
+        // Get all listings
+        const listings = await Listing.find();
 
-//       console.log("Submit button clicked");
-//       console.log(form.checkValidity());
+        // Loop through each listing
+        for (let listing of listings) {
 
-//       if (!form.checkValidity()) {
-//         console.log("Form is invalid");
-//         event.preventDefault();
-//         event.stopPropagation();
-//       }
+            const location = `${listing.location}, ${listing.country}`;
 
-//       form.classList.add('was-validated');
-//     }, false);
-//   });
-// })();
+            try {
+                const response = await axios.get(
+                    "https://nominatim.openstreetmap.org/search",
+                    {
+                        params: {
+                            q: location,
+                            format: "json",
+                            limit: 1,
+                        },
+                        headers: {
+                            "User-Agent": "StayScape",
+                        },
+                    }
+                );
 
-// alert("script.js is loaded");
+                if (response.data.length > 0) {
 
-// alert("Script loaded");
+                    listing.geometry = {
+                        type: "Point",
+                        coordinates: [
+                            parseFloat(response.data[0].lon),
+                            parseFloat(response.data[0].lat),
+                        ],
+                    };
 
-// (() => {
-//   // 'use strict';
+                    await listing.save();
 
-//   // const forms = document.querySelectorAll('.needs-validation');
+                    console.log(`Updated: ${listing.title}`);
+                } else {
+                    console.log(`Location not found: ${listing.title}`);
+                }
 
-//   // alert("Forms found: " + forms.length);
+            } catch (err) {
+                console.log(`Error updating ${listing.title}: ${err.message}`);
+            }
 
-//   // Array.from(forms).forEach(form => {
-//   //   form.addEventListener('submit', event => {
+            // Wait 1 second before the next API request
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-//   //     alert("Submit clicked");
+        console.log("All listings updated!");
 
-//   //     if (!form.checkValidity()) {
-//   //       alert("Form is invalid");
-//   //       event.preventDefault();
-//   //       event.stopPropagation();
-//   //     }
+    } catch (err) {
+        console.log("Database Connection Error:", err.message);
+    } finally {
+        mongoose.connection.close();
+    }
+}
 
-//   //     form.classList.add('was-validated');
-//   //   });
-//   });
-// })();
-
-(() => {
-  'use strict';
-
-  const forms = document.querySelectorAll('.needs-validation');
-
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-
-      console.log("Submit clicked");
-      console.log("checkValidity:", form.checkValidity());
-
-      const comment = document.getElementById("comment");
-      console.log("Comment value:", `"${comment.value}"`);
-      console.log("Comment valid:", comment.checkValidity());
-
-      if (!form.checkValidity()) {
-        console.log("Form is invalid");
-        event.preventDefault();
-        event.stopPropagation();
-      }
-
-      form.classList.add('was-validated');
-    });
-  });
-})();
+main();

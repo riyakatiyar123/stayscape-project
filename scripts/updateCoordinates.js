@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
-const Listing = require("../../models/listing");
+
+// Change this line according to where your file is located
+const Listing = require("../models/listing");
+// OR
+// const Listing = require("../../../models/listing");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/stayscape";
 
@@ -11,11 +15,9 @@ async function main() {
     const listings = await Listing.find();
 
     for (let listing of listings) {
-
         const location = `${listing.location}, ${listing.country}`;
 
         try {
-
             const response = await axios.get(
                 "https://nominatim.openstreetmap.org/search",
                 {
@@ -31,7 +33,8 @@ async function main() {
             );
 
             if (response.data.length > 0) {
-
+                console.log("Searching:", location);
+console.log("Result:", response.data[0]);
                 listing.geometry = {
                     type: "Point",
                     coordinates: [
@@ -41,22 +44,19 @@ async function main() {
                 };
 
                 await listing.save();
-
                 console.log(`Updated: ${listing.title}`);
             } else {
                 console.log(`Location not found: ${listing.title}`);
             }
-
         } catch (err) {
             console.log(`Error updating ${listing.title}:`, err.message);
         }
 
-        // Wait 1 second before the next request
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Wait 1 second before the next API request
+        await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
     console.log("All listings updated!");
-
     mongoose.connection.close();
 }
 

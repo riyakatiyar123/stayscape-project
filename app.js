@@ -12,6 +12,7 @@ const ejsMate=require("ejs-mate");
 //wrapAsync is a helper function that automatically catches errors in async routes and sends them to Express’s error handler.
 const expressError=require("./utils/expressError.js");
 const session=require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash=require("connect-flash");
 const passport=require("passport");
 const localStrategy=require("passport-local");
@@ -22,28 +23,39 @@ const reviewsRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 
 
-const mongo_url="mongodb://127.0.0.1:27017/stayscape";
+// const mongo_url="mongodb://127.0.0.1:27017/stayscape";
+const dbUrl = process.env.ATLASDB_URL;
+
 
 //main->Go connect to MongoDB. JavaScript doesn’t want to freeze while waiting, so it performs this asynchronously.
-main().then(()=>{
-    console.log("connected to Db")
+// main().then(()=>{
+//     console.log("connected to Db")
 
-}).catch((err)=>{
-console.log(err);
+// }).catch((err)=>{
+// console.log(err);
 
-});
+// });
+main()
+.then(() => {
+    console.log("Connected to MongoDB Atlas");
+})
+.catch(err => console.log(err));
+
+async function main() {
+    await mongoose.connect(dbUrl);
+}
 
 //async tells JavaScript that this function may contain code that takes time to finish.
 //await is a keyword used inside an async function to wait until an asynchronous operation is completed before moving to the next line.
-async function main(){
-    await mongoose.connect(mongo_url);
-}
+// async function main(){
+//     await mongoose.connect(mongo_url);
+// }
 
 //* New Route → Gives you the blank form.
 //Create Route → Takes the filled form and stores it.
-app.get("/",(req,res)=>{
-    res.send("hi,im a root");
-});
+// app.get("/",(req,res)=>{
+//     res.send("hi,im a root");
+// });
 
 
 // tell Express how to find and use EJS templates.
@@ -56,10 +68,20 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"public")));  //Anything inside public can be used by the browser
 
 
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:"mysupersecret",
+    },
+    touchAfter:24*3600,
+});
 
-
+store.on("error",(err)=>{
+    console.log("ERROR in MONGO SESSION STORE",err)
+});
 
 const sessionOption={
+    store,
     secret:"mysupersecret",
     resave: false,
     saveUninitialized:true,
@@ -69,6 +91,11 @@ const sessionOption={
         httpOnly:true,
     }
 };
+
+
+
+
+
 
 app.use(session(sessionOption));
 app.use(flash());

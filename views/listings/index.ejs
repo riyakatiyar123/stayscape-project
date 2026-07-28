@@ -3,7 +3,75 @@
 <% layout("layouts/boilerplate") %>
 <%= success %>
 
-<h2>All Listings</h2>
+<!-- <h2>All Listings</h2> -->
+<div id="filters">
+
+   <a href="/listings?category=Trending">
+    <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+    </div>
+</a>
+
+    <a href="/listings?category=Amazing Views">
+    <div class="filter">
+        <i class="fa-solid fa-mountain-sun"></i>
+        <p>Amazing views</p>
+    </div>
+
+   <a href="/listings?category=Pools">
+    <div class="filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Pools</p>
+    </div>
+</a>
+
+    <a href="/listings?category=Beachfront">
+    <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beachfront</p>
+    </div>
+</a>
+
+    <a href="/listings?category=Treehouses">
+    <div class="filter">
+       <i class="fa-solid fa-tree"></i>
+        <p>Treehouses</p>
+    </div>
+
+    <a href="/listings?category=Camping">
+    <div class="filter">
+        <i class="fa-solid fa-campground"></i>
+        <p>Camping</p>
+    </div>
+
+    <a href="/listings?category=Historical">
+    <div class="filter">
+       <i class="fa-solid fa-landmark"></i>
+        <p>Historical</p>
+    </div>
+</a>
+</div>
+<% if(allListings.length === 0){ %>
+
+<div class="no-results">
+    <h2>No Listings Found 😕</h2>
+
+    <p>
+        Sorry! We couldn't find any stays
+        <% if(searchLocation){ %>
+            in "<strong><%= searchLocation %></strong>"
+        <% } %>.
+    </p>
+
+    <p>Please try searching for another location.</p>
+
+    <a href="/listings" class="btn btn-primary mt-3">
+         Back to All Stays
+    </a>
+</div>
+
+<% } else { %>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
 
@@ -13,7 +81,6 @@
 
         <div class="card h-100">
 
-            <!-- Entire card (except button) is clickable -->
             <a href="/listings/<%= listing._id %>" class="listing-link">
 
                 <img
@@ -36,13 +103,10 @@
 
             </a>
 
-            <!-- Button -->
             <div class="card-footer bg-transparent border-0">
-
                 <a href="/listings/<%= listing._id %>" class="btn btn-primary">
                     View Details
                 </a>
-
             </div>
 
         </div>
@@ -52,6 +116,8 @@
     <% } %>
 
 </div>
+
+<% } %>
 
 </body>
 </html>

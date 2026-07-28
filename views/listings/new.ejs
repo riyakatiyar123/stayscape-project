@@ -56,7 +56,8 @@
         id="image"
         name="listing[image]"
         class="form-control"
-    > required
+        required
+    > 
 </div>
  
              
@@ -76,7 +77,29 @@
     Please enter the country.
 </div>
        </div>
-      
+     <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+
+    <select
+        id="category"
+        name="listing[category]"
+        class="form-select"
+        required
+    >
+        <option value="">Select a category</option>
+        <option value="Amazing Views">Amazing Views</option>
+        <option value="Amazing Pools">Amazing Pools</option>
+        <option value="Beachfront">Beachfront</option>
+        <option value="Cabins">Cabins</option>
+        <option value="Camping">Camping</option>
+        <option value="Historical">Historical</option>
+        <option value="Treehouses">Treehouses</option>
+    </select>
+
+    <div class="invalid-feedback">
+        Please select a category.
+    </div>
+</div>
       
        <button class="btn">submit</button>
     </form>
