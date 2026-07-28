@@ -1,237 +1,50 @@
-html{
+
+html {
     height: 100%;
 }
 
-body{
-    background-color: #ebe6d2;
+body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-     font-family: "Rockwell";
+    background-color: #ebe6d2;
+    font-family: "Rockwell";
 }
 
-.container{
+.container {
     flex: 1;
-    
 }
-.logo{
+
+/* navbar */
+
+.logo {
     width: 80px;
     height: auto;
 }
-.nav-link{
-    color: #364820;
+
+.navbar {
+    background-color: #ebe6d2 !important;
+}
+
+.nav-link {
+    color: #364820 !important;
     font-family: "Rockwell";
-}
-
-/*footer*/
-footer {
-    display: block;
-    width: 100%;
-}
-
-.f-info-links a{
-    text-decoration: none;
-    color: #364820;
-}
-.f-info-links a:hover{
-    text-decoration: underline;
-}
-.f-info{
-    height:10rem;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-    flex-direction: column;
-    background-color: #d2cbaf;
-    
-}
-/* cards */
-
-.card{
-   
-    border: none !important;
-    box-shadow: none !important;
-    background-color: #ebe6d2;
-     padding: 0.5rem;
-}
-
-.card-img-top{
-    width: 100%;
-    height: 16rem;
-    object-fit: cover;
-    border-radius: 1rem;
-}
-.card-body{
-    padding:0.5rem;
-}
-.card-text{
-   font-family: "Rockwell";
-  color: #364820;
-  font-size: medium;
-}
-.card-title{
-    font-weight: 300;
-    font-family: "Rockwell";
-  color: #364820;
-  
-}
-.btn {
-   
-    background-color:  #65873c; 
-    font-size: medium;
-    color:rgb(50, 80, 41);
-}
-.btn:hover {
-    background-color: #608038; 
-}
-.listing-link{
-    text-decoration: none;
-}
-
-/* new list */
-.page-title{
-    font-size: 2rem;
-    font-weight: 500;
-    color: #323c26; 
-    text-align: center;
-    position: relative;
-
-    top: 20px;
-   
-}
-
-.page-subtitle{
-    text-align: center;
-    color: #6c757d;
-    position: relative;
-    top:25px;
-   
-}
-.form-label{
-    display: block;
-    margin-bottom: 0;
-    font-weight: 500;
-    color: #364820;
-}
-
-::placeholder{
-    font-family: Arial, Helvetica, sans-serif;
-    color: #6d6161;
-    font-weight: 50;
-    font-size: 0.95rem;
-}
-
-    
-
-
-.new-stay-page{
-    background-color: #b8c7a5;
-}
-
-.form-control{
-    color: rgba(0, 0, 0, 0.5);
-}
-.edit-page-body{
-   background-color: #b8c7a5;
-
-}
-
-
-/* show */
-.show-card{
-    width: 30rem;
-    margin: 0 auto;
-}
-.review-card{
-    background-color: #fdfcf7;
-    border: 1.5px solid #080807;
-    border-radius: 18px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    padding: 0.2rem;
-}
-
-.review-card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-}
-.show-img{
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 1rem;
-
-}
-.show-body{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.show-btn{
-    background-color: #65873c;
-    border: none;
-    color: #323c26;
     font-size: 1rem;
-    font-weight: 500;
-    padding: 0.6rem 1.5rem;
-    border-radius: 10px;
 }
 
-.show-btn:hover{
-    background-color: #4f6b2f;
-    color: white;
-}
-.listing-card{
-    border: solid rgb(183, 170, 170);
-    border-radius: 20px;
+.nav-link:hover {
+    color: #4f6b2f !important;
 }
 
+/* Login / Signup Buttons */
 
-/* //alert cross */
-
-
-.alert {
-    position: relative;
-    padding-right: 3rem;
-}
-
-/* review delete button  */
-.delete-review-btn{
-    background-color: #65873c;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    font-family: "Rockwell";
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.delete-review-btn:hover{
-    background-color: #4f6b2f;
-    color: white;
-}
-
-#map{
-    height:400px;
-    width:100%;
-    margin-top:1rem;
-    border-radius:10px;
-}
-/* signup login logout  */
 .green-btn {
-   background-color: #65873c;
+    background-color: #65873c;
     color: #323c26;
     border-radius: 8px;
     padding: 8px 16px;
     text-decoration: none;
+    transition: 0.3s ease;
 }
 
 .green-btn:hover {
@@ -239,26 +52,427 @@ footer {
     color: white;
 }
 
-/* Search Bar */
+/* footer */
 
-/* Search bar */
-.search-bar {
+footer {
+    width: 100%;
+    margin-top: auto;
+}
+
+.f-info {
+    height: 10rem;
+    background-color: #d2cbaf;
+
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    text-align: center;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #364820;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials i {
+    font-size: 1.4rem;
+    margin: 0 0.5rem;
+    color: #364820;
+}
+
+/* cards */
+
+.card {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #ebe6d2;
+    padding: 0.5rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.card-body {
+    padding: 0.5rem;
+}
+
+.card-title {
+    color: #364820;
+    font-family: "Rockwell";
+    font-weight: 400;
+}
+
+.card-text {
+    color: #364820;
+    font-family: "Rockwell";
+    font-size: 1rem;
+}
+
+.listing-card {
+    border: 1px solid rgb(183, 170, 170);
+    border-radius: 20px;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* buttons */
+
+.btn {
+    background-color: #65873c;
+    color: #323c26;
+    font-size: 1rem;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #4f6b2f;
+    color: white;
+}
+
+/* alert */
+
+.alert {
+    position: relative;
+    padding-right: 3rem;
+}
+/* new listing page  */
+
+.new-stay-page,
+.edit-page-body {
+    background-color: #b8c7a5;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #323c26;
+    margin-top: 20px;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-top: 10px;
+    margin-bottom: 2rem;
+}
+
+/* /forms */
+
+.form-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: #364820;
+}
+
+.form-control {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #6d6161;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* show .page */
+
+
+.show-body {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.show-card {
+    width: 30rem;
     margin: 0 auto;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+.show-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.show-btn {
+    background-color: #65873c;
+    color: #323c26;
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.show-btn:hover {
+    background-color: #4f6b2f;
+    color: white;
+}
+
+/* review card */
+
+.review-card {
+    background-color: #fdfcf7;
+    border: 1.5px solid #080807;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    padding: 1rem;
+    transition: 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* delete review button */
+
+.delete-review-btn {
+    background-color: #65873c;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-family: "Rockwell";
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.delete-review-btn:hover {
+    background-color: #4f6b2f;
+    color: white;
+}
+
+
+   /* MAP */
+
+
+#map {
+    width: 100%;
+    height: 400px;
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* .search-bar */
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 700px;
+
+    background-color: #dfdac8;
+    border-radius: 50px;
+
+    padding: 8px 12px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Search Sections */
+
+.search-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1;
+
+    padding: 4px 12px;
+
+    text-align: center;
+}
+
+.search-item label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #364820;
+    margin-bottom: 2px;
+}
+
+.search-item input,
+.search-item select {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    text-align: center;
+
+    color: gray;
+    font-size: 0.85rem;
+}
+
+.search-item input::placeholder {
+    color: gray;
+}
+
+/* Divider */
+
+.divider {
+    width: 1px;
+    height: 32px;
+    background-color: #c8c8c8;
+}
+
+/* Destination */
+
+.location-box {
+    flex: 1;
+}
+
+/* Date */
+
+.date-box {
+    flex: 1.6;
+}
+
+.date-box input {
+    padding: 2px;
+}
+
+/* Category */
+
+.category-box {
+    flex: 1;
+}
+
+/* Search Button */
+
+.search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+    background-color: #739944;
+    color: #323c26;
+
+    border-radius: 30px;
+
+    padding: 12px 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.search-btn i {
+    margin-right: 6px;
+}
+
+.search-btn:hover {
+    background-color: #4f6b2f;
+    color: white;
+}
+
+
+
+.search-item input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+/* mobile */
+
+@media (max-width: 992px) {
+
     .search-bar {
-        width: 95%;
-        margin: 1rem auto;
+        max-width: 90%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .search-container {
+        padding: 0 12px;
+    }
+
+    .search-bar {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        border-radius: 20px;
+
+        gap: 10px;
+
+        padding: 16px;
+
+        max-width: 100%;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .search-item {
+        width: 100%;
+        text-align: left;
+    }
+
+    .search-item input,
+    .search-item select {
+        text-align: left;
+    }
+
+    .search-btn {
+
+        width: 100%;
+
+        justify-content: center;
+
+        margin-top: 5px;
     }
 
     .navbar-collapse {
+
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
     }
 
@@ -266,232 +480,192 @@ footer {
         width: 100%;
         justify-content: center;
     }
-}
-.search-bar{
-    display: flex;
-    align-items: center;
-   background-color: #dfdac8; 
-    border-radius: 50px;
-    padding: 8px;
-    width: 500px;
-    height: 60px;
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0);
-     margin-left:220px;
-}
-
-.search-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   /* Centers content vertically */
-    height: 100%;
-    padding: 8px 12px;
-}
-
-.search-item p{
-   
-    margin: 0px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.search-item span{
-    
-    color: gray;
-    font-size: 0.7rem;
-}
-
-.divider{
-    
-    width: 1px;
-    height: 10px;
-    background-color: #ddd;
-}
-
-.search-btn{
-    display: flex;
-justify-content: center;
-
-    align-items: center;
-    border: none;
-    background-color: #739944;
-    color: #323c26;
-    padding: 10px 10px;
-    border-radius: 30px;
-   font-size: small;
-    
-}
-.search-btn:hover{
-    color:white;
-}
- .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 6px 12px;
-    border-radius: 40px;
-}
-/* Destination */
-
-.search-item:nth-child(1){
-    text-align: center;
-flex: 1;
-}
-
-/* Dates */
-
-.search-item:nth-child(3){
-    text-align: center;
- flex: 1.4;
-}
-
-/* Category */
-
-.location-box {
-    flex: 0.9;
-}
-
-.date-box {
-    flex: 1.8;   /* Increase this */
-}
-.date-box input {
-    font-size: 0.8rem;
-    width: 100%;
-    text-align: center;
-}
-
-.category-box {
-    flex: 0.8;
-}
-
-.search-item:nth-child(5){
-    text-align: center;
-flex: 0.9;
 
 }
 
- .search-item{
-    flex: 1;
-    padding: 4px 10px;
-}
-
-.search-item label{
-    
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin: 0;
-    margin-bottom: 2px;
-}
-
-.search-item input,
-.search-item select{
-    text-align: center;
-    width: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 0.85rem;
-    color: gray;
-    margin: 0;
-    padding: 0;
-}
-
-.search-item input::placeholder{
-    font-size: 0.85rem;
-    color: gray;
-}
-.date-box input {
-    padding: 2px 4px;
-}
-.filter i{
-    transition: transform .25s ease;
-}
-
-.filter:hover i{
-    transform: scale(1.15);
-    color:#4f6b2f;
-}
 
 
-/* Make the calendar icon bigger (Chrome, Edge, Safari) */
-.search-item input[type="date"]::-webkit-calendar-picker-indicator{
-    cursor: pointer;
-    transform: scale(1.3);
-}
-
-#filters{
+#filters {
     display: flex;
     justify-content: center;
-    gap: 4rem;
-    margin-top: 1rem;
-    
-}
-.filter{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 2rem 0;
 }
 
-#filters a{
-    text-decoration:none;
-    color:inherit;
+#filters a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.filter{
+.filter {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.filter i{
-    font-size: 1.5rem;
-    color: #0c4127;
-   font-size: 1.3rem;
+.filter:hover {
+    transform: translateY(-3px);
 }
 
-.filter p{
+.filter i {
+    font-size: 1.4rem;
+    color: #364820;
+    transition: all 0.3s ease;
+}
+
+.filter:hover i {
+    color: #4f6b2f;
+    transform: scale(1.15);
+}
+
+.filter p {
     margin-top: 6px;
     font-size: 0.85rem;
+    color: #364820;
+    text-align: center;
 }
 
+
+
 .no-results {
-    text-align: center;
-    margin: 80px auto;
+    width: 100%;
+    max-width: 450px;
+
+    margin: 60px auto;
     padding: 30px;
-    max-width: 500px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background-color: #f8f9fa;
-}
 
-.no-results h2 {
-    color: #ff385c;
-}
-
-.no-results p {
-    color: #666;
-}
-
-.no-results {
-    width:400px;
-    margin: 50px auto;
-    padding: 25px;
     text-align: center;
-    background: #fff;
+
+    background: white;
+
     border: 1px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 14px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .no-results h2 {
     color: #ff385c;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 12px;
 }
 
 .no-results p {
     color: #555;
-    font-size: 0.80rem;
+    font-size: 0.9rem;
     margin-bottom: 8px;
+}
+
+
+
+@media (max-width: 992px) {
+
+    .show-card {
+        width: 90%;
+    }
+
+    .show-img {
+        height: 260px;
+    }
+
+    #filters {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .logo {
+        width: 65px;
+    }
+
+    .card-img-top {
+        height: 220px;
+    }
+
+    .show-img {
+        height: 220px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .page-title {
+        font-size: 1.7rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .btn,
+    .show-btn,
+    .delete-review-btn {
+        width: 100%;
+    }
+
+    #filters {
+        gap: 1rem;
+    }
+
+    .filter {
+        width: 70px;
+    }
+
+    .filter i {
+        font-size: 1.2rem;
+    }
+
+    .filter p {
+        font-size: 0.75rem;
+    }
+
+    .no-results {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    .show-img {
+        height: 200px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .logo {
+        width: 55px;
+    }
+
+    .filter {
+        width: 60px;
+    }
+
+    .filter i {
+        font-size: 1.1rem;
+    }
+
+    .filter p {
+        font-size: 0.7rem;
+    }
 }
