@@ -80,7 +80,7 @@
 
     <!-- Review Form -->
 
-    <% if (currUser) { %>
+   <% if(currUser){ %> 
 
     <div class="card shadow-sm border-0 mt-5 p-4">
 
@@ -174,7 +174,7 @@
 
                     <h5 class="card-title">
 
-                        <%= review.author.username %>
+                        <%= review.author ? review.author.username : "Unknown User" %>
 
                     </h5>
 

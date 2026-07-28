@@ -40,6 +40,6 @@ router.post("/",isLoggedIn, validatelisting,upload.single("listing[image]"),wrap
    
 
 //delete route
-router.delete("/:id",isLoggedIn,isReviewAuthor,isOwner,wrapAsync(listingcontroller.destroyRoute));
+router.delete("/:id",isLoggedIn,isOwner,wrapAsync(listingcontroller.destroyRoute));
 
 module.exports=router;
