@@ -35,22 +35,8 @@
 <body>
 
     <%- include("../includes/navbar.ejs") %>
-<!-- Mobile Search Bar -->
-<div class="mobile-search d-md-none">
-    <form action="/listings/search" method="GET">
-        <div class="input-group">
-            <input
-                type="text"
-                name="location"
-                class="form-control"
-                placeholder="🔍 Search destination...">
 
-            <button class="btn mobile-search-btn" type="submit">
-                Search
-            </button>
-        </div>
-    </form>
-</div>
+
     <div class="container">
         <%- include("../includes/flash.ejs") %>
         <%- body %>

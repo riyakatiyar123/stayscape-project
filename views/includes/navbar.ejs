@@ -1,81 +1,167 @@
 <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
-  <div class="container-fluid">
-     <a class="navbar-brand" href="/listings">
-    <img src="/images/stayscapelogo.png" alt="Stayscapelogo" class="logo">
-  </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-    data-bs-target="#navbarNavAltMarkup" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-       
-        <a class="nav-link" href="/listings"> Stays</a>
-        <a class="nav-link" href="/listings/new">Add new Stay</a>
-      
-      </div>
-       <form class="search-bar" action="/listings" method="GET">
 
-    <!-- Destination -->
-    <div class="search-item">
-        <label for="location">Where</label>
-        <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Your destination"
-        >
+    <div class="container-fluid">
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="/listings">
+            <img src="/images/stayscapelogo.png" class="logo">
+        </a>
+
+        <!-- Mobile Search -->
+        <form
+            class="mobile-search d-flex d-md-none"
+            action="/listings"
+            method="GET">
+
+            <input
+                type="text"
+                class="form-control mobile-search-input"
+                name="location"
+                placeholder="Search destination">
+
+        </form>
+
+        <!-- Hamburger -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Navbar -->
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+            <!-- Left -->
+
+            <div class="navbar-nav">
+
+                <a class="nav-link d-none d-md-block" href="/listings">
+                    Stays
+                </a>
+
+                <a class="nav-link d-none d-md-block" href="/listings/new">
+                    Add New Stay
+                </a>
+
+            </div>
+
+            <!-- Desktop Search -->
+
+            <form class="search-bar d-none d-md-flex"
+                  action="/listings"
+                  method="GET">
+
+                <!-- Destination -->
+
+                <div class="search-item">
+
+                    <label>Where</label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="Your destination">
+
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Dates -->
+
+                <div class="search-item">
+
+                    <label>Dates</label>
+
+                    <input
+                        type="text"
+                        id="dates"
+                        name="dates"
+                        placeholder="Add dates">
+
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Category -->
+
+                <div class="search-item">
+
+                    <label>Type of Stay</label>
+
+                    <select name="category">
+
+                        <option value="">Any</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Cabin">Cabin</option>
+                        <option value="Cottage">Cottage</option>
+                        <option value="Farmhouse">Farmhouse</option>
+                        <option value="Resort">Resort</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Treehouse">Treehouse</option>
+
+                    </select>
+
+                </div>
+
+                <button class="search-btn">
+
+                    Search
+
+                </button>
+
+            </form>
+
+            <!-- Right -->
+
+            <div class="navbar-nav ms-auto">
+
+                <% if(!currUser){ %>
+
+                <a class="green-btn me-2" href="/signup">
+                    Sign Up
+                </a>
+
+                <a class="green-btn" href="/login">
+                    Login
+                </a>
+
+                <% } else { %>
+
+                <a class="green-btn" href="/logout">
+                    Log Out
+                </a>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="divider"></div>
-
-    <!-- Dates -->
-<div class="search-item">
-    <label for="dates">Dates</label>
-    <input
-        type="text"
-        id="dates"
-        name="dates"
-        placeholder="Add dates"
-    >
-</div>
-
-<div class="divider"></div>
-    <!-- Type of Stay -->
-    <div class="search-item">
-        <label for="category">Type of Stay</label>
-
-        <select id="category" name="category">
-            <option value="">Any</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Villa">Villa</option>
-            <option value="Cabin">Cabin</option>
-            <option value="Cottage">Cottage</option>
-            <option value="Farmhouse">Farmhouse</option>
-            <option value="Resort">Resort</option>
-            <option value="Hotel">Hotel</option>
-            <option value="Treehouse">Treehouse</option>
-        </select>
-    </div>
-
-    <!-- Search Button -->
-    <button class="search-btn" type="submit">
-        Search
-    </button>
-
-</form>
-      <div class="navbar-nav ms-auto">
-        <% if(!currUser){ %>
-    <a class="green-btn me-2" href="/signup">Sign Up</a>
-    <a class="green-btn" href="/login">Login</a>
-<% } %>
-
-<% if(currUser){ %>
-    <a class="green-btn" href="/logout">Log Out</a>
-<% } %>
-        
-      
-      </div>
-    </div>
-  </div>
 </nav>
+
+<!-- Mobile Bottom Buttons -->
+
+<div class="mobile-nav-links d-flex d-md-none">
+
+    <a href="/listings" class="mobile-nav-btn">
+
+        Stays
+
+    </a>
+
+    <a href="/listings/new" class="mobile-nav-btn">
+
+        Add New Stay
+
+    </a>
+
+</div>
