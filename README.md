@@ -4,11 +4,27 @@ StayScape is a full-stack accommodation booking platform that allows users to br
 
 ## Live Demo
 
-🔗 https:https://stayscape-project-zdvd.onrender.com/listings
-<img width="1470" height="956" alt="Screenshot 2026-07-28 at 23 24 37" src="https://github.com/user-attachments/assets/67647f33-6e3c-4a51-9d78-4e6bafe3e231" />
-<img width="1470" height="956" alt="Screenshot 2026-07-28 at 23 24 49" src="https://github.com/user-attachments/assets/bd10c2f5-8155-4077-8d62-4cb702b81a69" />
-<img width="1470" height="956" alt="Screenshot 2026-07-28 at 23 25 00" src="https://github.com/user-attachments/assets/cc29b0dd-f4fc-4ec6-bf28-97591f8a8bb0" />
-<img width="1470" height="956" alt="Screenshot 2026-07-28 at 23 25 55" src="https://github.com/user-attachments/assets/63c6ea8c-53c9-4dbf-9ed2-684d759b08e8" />
+🔗 https://stayscape-project-zdvd.onrender.com/listings
+
+
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Listing Page
+
+![Listing Page](screenshots/listing.png)
+
+### Login Page
+
+![Login Page](screenshots/login.png)
+
+### Mobile View
+
+![Mobile View](screenshots/mobile.png)
+
 
 ## Features
 
