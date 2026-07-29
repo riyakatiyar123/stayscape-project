@@ -26,6 +26,16 @@ StayScape is a full-stack accommodation booking platform that allows users to br
 ![  Browse by Category ](screenshots/mobile.png)
 
 
+## 📱 Mobile Responsive Interface
+
+![ Page 1](screenshots/mobilepage1.png)
+
+![ Page 2](screenshots/mobilepage2.png)
+
+![ Page 3](screenshots/mobilepage3.png)
+
+![ Page 4](screenshots/mobilepage4.png)
+
 ## Features
 
 - User authentication and authorization
