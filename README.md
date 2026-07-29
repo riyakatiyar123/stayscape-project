@@ -1,6 +1,6 @@
 # StayScape
 
-StayScape is a full-stack accommodation booking platform that allows users to browse, create, edit, and review property listings. It provides a responsive user experience across desktop and mobile devices with secure authentication, cloud image storage, and interactive maps.
+StayScape is a full-stack accommodation listing and review platform that allows users to browse, create, edit, and review property listings. It provides a responsive user experience across desktop and mobile devices with secure authentication, cloud image storage, and interactive maps.
 
 ## Live Demo
 
